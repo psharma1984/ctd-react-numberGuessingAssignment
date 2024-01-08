@@ -6,19 +6,22 @@ const GuessControl = ({ onGuess }) => {
   const handleInputChange = (event) => {
     setCurrentGuess(event.target.value);
   }
-  const onSubmitGuess = () => {
+  const onSubmitGuess = (e) => {
+    e.preventDefault();
     onGuess(Number(currentGuess));
     setCurrentGuess("");
   }
   return (
-    <div>
-      <input
-        type="number"
-        value={currentGuess}
-        onChange={handleInputChange}
-      />
-      <Button onClick={onSubmitGuess}>Submit Guess</Button>
-    </div>
+    <form onSubmit={onSubmitGuess}>
+      <div>
+        <input
+          type="number"
+          value={currentGuess}
+          onChange={handleInputChange}
+        />
+        <Button>Submit Guess</Button>
+      </div>
+    </form>
   );
 }
 export default GuessControl;
